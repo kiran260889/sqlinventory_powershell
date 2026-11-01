@@ -1,0 +1,71 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261101123317
+Username: KIRAN\Kiran
+RunAs User: KIRAN\Kiran
+Configuration Name: 
+Machine: KIRAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\Invoke-SqlHostInventory.ps1 -WriteToTable -TargetServer localhost -TargetDatabase test
+Process ID: 31280
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Logging full run output to: C:\Users\Kiran\Downloads\test\inventory_output\run_20261101_123316.log
+
+============================================================
+  Finding instances on each server
+============================================================
+Reading servers from: C:\Users\Kiran\Downloads\test\instances.txt
+Servers in file: 1
+PS>TerminatingError(New-CimSession): "The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: The client cannot connect to the destination specified in the request. Verify that the service on the destination is running and is accepting requests. Consult the logs and documentation for the WS-Management service running on the destination, most commonly IIS or WinRM. If the destination is the WinRM service, run the following command on the destination to analyze and configure the WinRM service: "winrm quickconfig"."
+  localhost : SQL2025, SQLDEV  [services]
+Instances to query: 2
+
+============================================================
+  Collecting inventory
+============================================================
+[1/2] localhost\SQL2025
+  OK - Virtual | Named (SQL2025) | SQL Server 2025 17.0.1000.7
+[2/2] localhost\SQLDEV
+  OK - Virtual | Named (SQLDEV) | SQL Server 2019 15.0.2000.5
+
+============================================================
+  Run Summary
+============================================================
+
+Server    Instance          Status InstanceType HostType DiscoveryMethod Rows
+------    --------          ------ ------------ -------- --------------- ----
+localhost localhost\SQL2025 OK     Named        Virtual  WindowsServices    1
+localhost localhost\SQLDEV  OK     Named        Virtual  WindowsServices    1
+
+
+Servers: 1. Instances: 2 OK, 0 FAILED, 0 STOPPED. Rows: 2.
+
+HostType Count
+-------- -----
+Virtual      2
+
+
+
+InstanceType Count
+------------ -----
+Named            2
+
+
+PS>TerminatingError(): "Exception calling "Open" with "0" argument(s): "A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)""
+
+Write to dbo.SQLServer_Host_stagging failed: Exception calling "Open" with "0" argument(s): "A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)"
+
+Inventory CSV : C:\Users\Kiran\Downloads\test\inventory_output\SqlHostInventory_20261101_123316.csv
+Run log       : C:\Users\Kiran\Downloads\test\inventory_output\run_20261101_123316.log
+Done.
+**********************
+Windows PowerShell transcript end
+End time: 20261101123336
+**********************
