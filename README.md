@@ -189,17 +189,6 @@ WHERE RunId = (SELECT MAX(RunId) FROM dbo.SQLServer_Host_stagging);
 
 ---
 
-## Physical vs virtual
-
-`HostType` comes from `sys.dm_os_sys_info.virtual_machine_type_desc`. SQL Server reports
-`HYPERVISOR` whenever Windows is running on a hypervisor, and that includes **physical**
-machines where Windows itself runs on Hyper-V: the Hyper-V role, Credential Guard,
-virtualization-based security, or WSL2. Those physical servers show as `Virtual`.
-
-Use `-CollectHardware` for the final answer. It reads the hardware manufacturer and model
-(e.g. `Dell Inc. / PowerEdge R740` vs `VMware, Inc. / VMware Virtual Platform`) and sets
-`HWHostType`. Rows where `HostType` and `HWHostType` disagree are listed in the run summary.
-**Where both are filled in, trust `HWHostType`.**
 
 ---
 
